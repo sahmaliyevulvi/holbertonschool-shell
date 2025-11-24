@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#comment
+for pid_dir in /proc/[0-9]*
+do
+    pid=$(basename "$pid_dir")
+    name=$(cat "$pid_dir/comm" 2>/dev/null)
+    echo "$pid $name"
+done
