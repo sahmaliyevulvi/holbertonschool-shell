@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
-#comment
+
 file="/var/run/myscript.pid"
-pid=$$
-echo "$pid" > "$file"
-trap 'echo "I hate the kill command"; rm -f /var/run/myscript.pid; exit' SIGTERM
+
+# PID file yaradılır
+echo "$$" > "$file"
+
+# Signal-lar üçün trap-lar
+trap 'echo "I hate the kill command"; rm -f "$file"; exit' SIGTERM
 trap 'echo "Y U no love me?!"; exit' SIGINT
-trap 'rm -f /var/run/myscript.pid; exit' SIGQUIT
+trap 'rm -f "$file"; exit' SIGQUIT
+
+# Sonsuz loop
 while true
 do
-	echo "To infinity and beyond"
-	sleep 2
+    echo "To infinity and beyond"
+    sleep 2
 done
+
