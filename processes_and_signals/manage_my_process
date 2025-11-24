@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#comment
+
+# PID faylını yaradır
+echo $$ > /var/run/my_process.pid
+
+# Sonsuz dövr
+while true; do
+    echo "I am alive!" >> /tmp/my_process
+    sleep 2
+done
+
