@@ -1,23 +1,14 @@
 #!/usr/bin/env bash
-# Script creates its PID file and runs forever
-
+#comment
 file="/var/run/myscript.pid"
 pid=$$
-
-# Faylı yaradın və icazəni tənzimləyin (checker mühiti üçün)
-
-# PID yazın
 echo "$pid" > "$file"
-
-# Traps
-trap 'echo "I hate the kill command"; rm -f "$file"; exit' SIGTERM
+trap 'echo "I hate the kill command"; rm -f /var/run/myscript.pid; exit' SIGTERM
 trap 'echo "Y U no love me?!"; exit' SIGINT
-trap 'rm -f "$file"; exit' SIGQUIT
-
-# Sonsuz loop
+trap 'rm -f /var/run/myscript.pid; exit' SIGQUIT
 while true
 do
-    echo "To infinity and beyond"
-    sleep 2
+	echo "To infinity and beyond"
+	sleep 2
 done
 
