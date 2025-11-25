@@ -1,24 +1,14 @@
 #!/usr/bin/env bash
-
-# Path to PID file
-PIDFILE="/var/run/myscript.pid"
-
-# Create PID file containing this script's PID
-echo "$$" > "$PIDFILE"
-
-# Handle SIGTERM
-trap 'echo "I hate the kill command"; rm -f "$PIDFILE"; exit' SIGTERM
-
-# Handle SIGINT (Ctrl+C)
+#comment
+file="/var/run/myscript.pid"
+pid=$$
+echo "$pid" > "$file"
+trap 'echo "I hate the kill command"; rm -f /var/run/myscript.pid; exit' SIGTERM
 trap 'echo "Y U no love me?!"; exit' SIGINT
-
-# Handle SIGQUIT
-trap 'rm -f "$PIDFILE"; exit' SIGQUIT
-
-# Infinite loop
+trap 'rm -f /var/run/myscript.pid; exit' SIGQUIT
 while true
 do
-    echo "To infinity and beyond"
-    sleep 2
+	echo "To infinity and beyond"
+	sleep 2
 done
 
