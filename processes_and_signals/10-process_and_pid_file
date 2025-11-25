@@ -2,12 +2,12 @@
 # Script creates its PID file and runs forever
 
 file="/var/run/myscript.pid"
+pid=$$
 
 # Faylı yaradın və icazəni tənzimləyin (checker mühiti üçün)
-touch "$file" 2>/dev/null || sudo touch "$file"
 
 # PID yazın
-echo "$$" > "$file"
+echo "$pid" > "$file"
 
 # Traps
 trap 'echo "I hate the kill command"; rm -f "$file"; exit' SIGTERM
